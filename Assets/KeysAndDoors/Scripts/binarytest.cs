@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class binarytest : MonoBehaviour
 {
     
@@ -15,7 +15,8 @@ public class binarytest : MonoBehaviour
     public shelf seven;
     public int sum;
     [Space]
-    public CodeLabel label;
+    //public CodeLabel label;
+    public Text label;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,5 +27,6 @@ public class binarytest : MonoBehaviour
     void Update()
     {
         sum = zero.output + one.output + two.output + three.output + four.output + five.output + six.output + seven.output;
+        label.text=sum.ToString();
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine.Events;
 using UniRx;
 using UniRx.Triggers;
 
-[RequireComponent(typeof(Collider))]
+//[RequireComponent(typeof(Collider))]
 public class shelf : MonoBehaviour
 {
     [Header("Properties")]
