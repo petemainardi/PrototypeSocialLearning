@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,18 +16,13 @@ public class binarytest : MonoBehaviour
     public shelf seven;
     public int sum;
     [Space]
-    //public CodeLabel label;
     public Text label;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public bool DisplayAsBinary = false;
 
     // Update is called once per frame
     void Update()
     {
         sum = zero.output + one.output + two.output + three.output + four.output + five.output + six.output + seven.output;
-        label.text=sum.ToString();
+        label.text = !this.DisplayAsBinary ? sum.ToString() : Convert.ToString(sum, 2).PadLeft(8, '0');
     }
 }

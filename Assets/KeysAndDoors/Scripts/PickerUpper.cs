@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,6 +16,7 @@ public class PickerUpper : MonoBehaviour
 
     [SerializeField, ReadOnly]
     private GameObject heldObj;
+    public GameObject HeldObject => this.heldObj;
 
 
 #if UNITY_EDITOR
@@ -26,6 +28,15 @@ public class PickerUpper : MonoBehaviour
         if (this.HoldParent == null)
             Debug.LogError("Pickup is missing a reference to a Transform for its HoldParent.");
 
+        // This is a super hacky fix for getting the reticule to properly turn on/off
+        // but since this is just a prototype this is the easiest way to just get it done
+        GameObject.FindObjectsOfType<Lock>().ToList()
+            .ForEach(l =>
+            {
+                Action dropObj = () => { this.HoldParent.DetachChildren(); this.heldObj = null; };
+                l.OnUnlock.AddListener(() => dropObj());
+                l.OnGenerateCode.AddListener(_ => dropObj());
+            });
     }
 
 #if UNITY_EDITOR

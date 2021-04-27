@@ -28,6 +28,7 @@ public class Lock : MonoBehaviour
     public int Code => this.CurrentCode;
 
     public UnityEvent<int> OnGenerateCode;
+    public UnityEvent OnUnlock;
 
 
     private void Awake()
@@ -99,6 +100,8 @@ public class Lock : MonoBehaviour
 
         foreach (Door d in this.Doors)
             d.Open();
+
+        this.OnUnlock.Invoke();
     }
 
 

@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
-using UniRx;
-using UniRx.Triggers;
+using UnityEngine.UI;
 
 //[RequireComponent(typeof(Collider))]
 public class shelf : MonoBehaviour
@@ -11,7 +9,7 @@ public class shelf : MonoBehaviour
     [Header("Properties")]
     private Collider col;
     public MeshRenderer mesh;
-    public GameObject gone;
+    public Text value;
     public Color HighlightColor;
     private Color originalColor;
     public int bit;
@@ -60,20 +58,22 @@ public class shelf : MonoBehaviour
 
     void Clicked(GameObject go)
     {
-        if (go == gone)
+        if (go == this.gameObject)
         {
-            print(go.name);
+            //print(go.name);
             if (io == 0)
             {
                 io = 1;
                 output = (int)Math.Pow(2, bit) * io;
                 this.mesh.material.color = this.HighlightColor;
+                this.value.text = "1";
             }
             else if (io == 1)
             {
                 io = 0;
                 output = (int)Math.Pow(2, bit) * io;
                 this.mesh.material.color = this.originalColor;
+                this.value.text = "0";
             }
             
         }
